@@ -6,13 +6,21 @@ Object.defineProperty(window, 'alert', {
   writable: true,
 });
 
-// Mock IntersectionObserver
-global.IntersectionObserver = class IntersectionObserver {
+// Mock IntersectionObserver with required properties for TS
+class MockIntersectionObserver {
+  readonly root: Element | null = null;
+  readonly rootMargin: string = '';
+  readonly thresholds: ReadonlyArray<number> = [];
   constructor() {}
   disconnect() {}
   observe() {}
   unobserve() {}
-};
+  takeRecords() { return []; }
+}
+// @ts-ignore
+global.IntersectionObserver = MockIntersectionObserver;
+// @ts-ignore
+global.IntersectionObserver.prototype = MockIntersectionObserver.prototype;
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
