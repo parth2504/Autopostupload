@@ -1,0 +1,14 @@
+/* Ensure all elements are responsive and never overflow the viewport */
+html,
+body,
+#root {
+  min-width: 0;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: auto;
+}
+
+* {
+  box-sizing: border-box;
+  min-width: 0;
+}
